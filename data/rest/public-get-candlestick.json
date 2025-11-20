@@ -1,0 +1,23 @@
+[
+  {
+    "description": "Retrieves candlesticks (k-line data history) from 1 day ago to current timestamp (interval: 1 minute) for BTCUSD-PERP",
+    "request_params": {
+      "instrument_name": "BTCUSD-PERP"
+    }
+  },
+  {
+    "description": "Retrieves candlesticks (k-line data history) from 1 day ago to current timestamp (interval: 30 minutes) for BTCUSD-PERP",
+    "request_params": {
+      "instrument_name": "BTCUSD-PERP",
+      "timeframe": "30m"
+    }
+  },
+  {
+    "description": "Retrieves candlesticks (k-line data history) over a given period (1 hour) for BTCUSD-PERP",
+    "request_params": {
+      "instrument_name": "BTCUSD-PERP",
+      "timeframe": "1h",
+      "count": "50"
+    }
+  }
+]

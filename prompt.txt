@@ -1,0 +1,58 @@
+Please write a automation API testing framework which could test both REST API and WebSocket API, using the following technologies: 
+- programming language: Python
+- test runner: Pytest, Behave (BDD format)
+- automation testing tool: Playwright
+- need to implement data driven concept, to read request data from JSON file
+- need a config file to change the base URL of different test environment: UAT, Production
+- test report: Allure (need to display the test environment information)
+
+Base URL:
+- UAT:
+	-- REST API: https://uat-api.3ona.co/exchange/v1/{method}
+	-- Websocket (User API and Subscriptions): wss://uat-stream.3ona.co/exchange/v1/user
+	-- Websocket (Market Data Subscriptions): wss://uat-stream.3ona.co/exchange/v1/market
+- Production: 
+	-- REST API: https://api.crypto.com/exchange/v1/{method}
+	-- Websocket (User API and Subscriptions): wss://stream.crypto.com/exchange/v1/user
+	-- Websocket (Market Data Subscriptions): wss://stream.crypto.com/exchange/v1/market
+
+Note: 
+- REST API requests need to be sent as "Content Type: application/json"
+- REST API requests need API Key (api_key) for Production
+- All numbers in requests must be strings, and must be wrapped in double quotes. e.g. "12.34", instead of 12.34.
+
+demo cases in UAT environment:
+- REST: https://{URL}/public/get-candlestick?instrument_name=BTCUSD-PERP
+- WebSocket: wss://uat-stream.3ona.co/exchange/v1/market
+	book.{instrument_name}.{depth}
+	{
+	  "id": 1,
+	  "method": "subscribe",
+	  "params": {
+	    "channels": ["book.BTCUSD-PERP.10"]
+	  }
+	}
+
+After you complete this framework and demo cases, please write a README file to introduce:
+- how to set up the environment, which is pre-condition to run the tests
+- steps to run the 2 demo cases: one is REST, the other one is WebSocket
+- introduce the project structure
+- how to write new test cases
+- how to run and debug the tests
+
+
+
+
+public-get-book
+
+book-instrument_name-depth
+
+data/ws/market/book-instrument_name-depth.json
+
+./scripts/run_pytest.sh -k candlestick
+./scripts/run_pytest.sh -k market_book
+allure serve allure-results
+
+Behave WS: ./scripts/run_behave.sh -D env=UAT --name "book channel"
+Behave REST: ./scripts/run_behave.sh -D env=UAT --name "candlestick"
+Allure: allure serve allure-results

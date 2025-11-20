@@ -1,0 +1,22 @@
+[
+  {
+    "description": "Orderbook / L2 streaming at millisecond frequency. Maximum number of depth levels: 10",
+    "channel_params": {
+      "id": "1",
+      "method": "subscribe",
+      "params": {
+        "channels": ["book.BTCUSD-PERP.10"]
+      }
+    }
+  },
+  {
+    "description": "Orderbook / L2 streaming at millisecond frequency. Maximum number of depth levels: 50",
+    "channel_params": {
+      "id": "1",
+      "method": "subscribe",
+      "params": {
+        "channels": ["book.BTCUSD-PERP.50"]
+      }
+    }
+  }
+]
